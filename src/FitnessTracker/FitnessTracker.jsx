@@ -7,19 +7,19 @@ function FitnessTracker() {
     const [sport, setSport] = useState("");
     const [weight, setWeight] = useState("");
     const [time, setTime] = useState("");
-    const [calories, setCalories] = useState("");
+    const [calories, setCalories] = useState('0.00');
 
     const option = [
         { label: 'Running🏃' },
         { label: 'Skiing⛷️' },
-        { label: 'Climbing🧗' }
+        { label: 'Bouldering🪨' }
     ];
 
-    function handleWeightchange(event){
+    function handleWeightchange(event) {
         setWeight(event.target.value);
     }
 
-    function handleTimechange(event){
+    function handleTimechange(event) {
         setTime(event.target.value);
     }
 
@@ -27,11 +27,18 @@ function FitnessTracker() {
         event.preventDefault();
         let burnedCalories = 0;
 
-        if(sport === "Climbing🧗"){
-            burnedCalories = 5 * weight * time;
+        if (sport === "Bouldering🪨") {
+            burnedCalories = 5 * weight * time/60;
         }
-        setCalories(burnedCalories);
+        setCalories(burnedCalories.toFixed(2));
     }
+
+    const handleReset = () => {
+        setSport("");
+        setTime("");
+        setWeight("");
+        setCalories(0.00);
+    } 
 
     return (
         <div className="main-app">
@@ -45,23 +52,21 @@ function FitnessTracker() {
             </div>
 
             <div className="right-content">
-
-                <div className="selection-bar">
-                    <form onSubmit={calculateCalories}>
-                        <p>Selected sport: {sport}</p>
-                        <br />
-                        <label>
-                            Weight: <input name="WeightInput" placeholder="your weight..." onChange={handleWeightchange}/>
-                        </label>
-                        <br />
-                        <label>
-                            Time: <input name="TimeInput" placeholder="time spent (min)..." type="number" onChange={handleTimechange}/>
-                        </label>
-                        <br />
-                        <p>CALORIES BURNED: {calories}</p>
-                        <input type="submit" value='submit' />
-                    </form>
-                </div>
+                <form className="selection-bar" onSubmit={calculateCalories}>
+                    <p>Selected sport: {sport}</p>
+                    <br />
+                    <label>
+                        Weight: <input name="WeightInput" placeholder="your weight..." onChange={handleWeightchange} />
+                    </label>
+                    <br />
+                    <label>
+                        Time: <input name="TimeInput" placeholder="time spent (min)..." type="number" onChange={handleTimechange} />
+                    </label>
+                    <br />
+                    <p>CALORIES BURNED: {calories} kcal</p>
+                    <input className="submit-button" type="submit" value='submit' />
+                    <button className="reset-button" onClick={handleReset}>RESET</button>
+                </form>
             </div>
         </div>
     );
