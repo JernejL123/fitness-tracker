@@ -19,7 +19,6 @@
 }
 
 .right-content {
-   
     display: flex;
     flex-direction: column;
     align-items:end;
@@ -27,18 +26,22 @@
 
 .selection-bar {
     width: 500px;
-    height: 450px;
+    height: 240px;
     display: flex;
     margin-top: 250px;
     flex-direction: column; 
-    background: linear-gradient(60deg, rgb(73, 85, 85), rgb(128, 131, 131));
+    background: linear-gradient(120deg, rgb(134, 235, 199), rgb(25, 225, 165));
     padding: 20px;
     border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     font-weight: 700;
-    color: rgb(242, 240, 235);
+    color: #333333;
     box-shadow: -5px -5px 16px rgba(0, 0, 0, 0.2);
+}
+
+.selection-bar::placeholder{
+    color: #777777;
 }
     
 

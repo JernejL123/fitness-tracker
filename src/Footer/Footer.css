@@ -7,6 +7,7 @@
     height: 50px;
     padding: 5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: azure;
 }
 
 .footer:hover{
@@ -16,4 +17,5 @@
 
 .footer-paragraf{
     text-align: center;
+    margin-top: 25px;
 }

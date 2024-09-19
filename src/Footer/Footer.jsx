@@ -4,7 +4,7 @@ function Footer() {
 
     return (
         <footer className='footer'>
-            <p className='footer-paragraf'>© 2024 Fitness-Tracker App. All rights reserved.</p>
+            <p className='footer-paragraf'>© 2024 Sport-Tracker App. All rights reserved.</p>
         </footer>
     )
 }
