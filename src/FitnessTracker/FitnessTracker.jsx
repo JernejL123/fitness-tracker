@@ -4,7 +4,7 @@ import './FitnessTracker.css';
 import img1 from './images/carabiner.svg';
 
 function FitnessTracker() {
-    const [sport, setSport] = useState("");
+    const [sport, setSport] = useState("NONE⛔");
     const [weight, setWeight] = useState("");
     const [time, setTime] = useState("");
     const [calories, setCalories] = useState('0.00');
@@ -12,7 +12,10 @@ function FitnessTracker() {
     const option = [
         { label: 'Running🏃' },
         { label: 'Skiing⛷️' },
-        { label: 'Bouldering🪨' }
+        { label: 'Bouldering🪨' },
+        { label: 'Swimming🏊' },
+        { label: 'Football⚽'},
+        { label: 'Cycling🚴'}
     ];
 
     function handleWeightchange(event) {
@@ -25,25 +28,38 @@ function FitnessTracker() {
 
     const calculateCalories = (event) => {
         event.preventDefault();
-        let burnedCalories = 0;
 
-        if (sport === "Bouldering🪨") {
-            burnedCalories = 5 * weight * time/60;
+        const METvalues = {
+            "Bouldering🪨": 5,
+            "Running🏃": 9.8,
+            "Skiing⛷️": 6.8,
+            "Swimming🏊": 8,
+            'Football⚽': 10.3,
+            'Cycling🚴': 6
+        };
+
+        const calorieRate = METvalues[sport];
+
+        if (calorieRate) {
+            const burnedCalories = calorieRate * weight * (time / 60);
+            setCalories(burnedCalories.toFixed(2));
+        } else {
+            setCalories("0.00");
         }
-        setCalories(burnedCalories.toFixed(2));
-    }
+    };
+
 
     const handleReset = () => {
-        setSport("");
+        setSport("NONE⛔");
         setTime("");
         setWeight("");
         setCalories(0.00);
-    } 
+    }
 
     return (
         <div className="main-app">
             <div className="left-menu">
-                <DropDownMenu title={'Menu'} options={option}
+                <DropDownMenu title={'Sports'} options={option}
                     selectedSport={sport} onSportSelect={setSport} />
 
                 <div className="image-container">
@@ -56,15 +72,15 @@ function FitnessTracker() {
                     <p>Selected sport: {sport}</p>
                     <br />
                     <label>
-                        Weight: <input name="WeightInput" placeholder="your weight..." onChange={handleWeightchange} />
+                        Weight: <input name="WeightInput" placeholder="your weight (kg)..." onChange={handleWeightchange} value={weight} />
                     </label>
                     <br />
                     <label>
-                        Time: <input name="TimeInput" placeholder="time spent (min)..." type="number" onChange={handleTimechange} />
+                        Time: <input name="TimeInput" placeholder="time spent (min)..." type="number" onChange={handleTimechange} value={time} />
                     </label>
                     <br />
                     <p>CALORIES BURNED: {calories} kcal</p>
-                    <input className="submit-button" type="submit" value='submit' />
+                    <input className="submit-button" type="submit" value='calculate' />
                     <button className="reset-button" onClick={handleReset}>RESET</button>
                 </form>
             </div>
