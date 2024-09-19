@@ -1,9 +1,18 @@
 .dropdown-menu {
-    position:static;
+    position:absolute;
     width: 300px;
     text-align: center;
     border:none;
 }
+
+.dropdown-menu.open {
+    height: auto;
+}
+
+.dropdown-menu.closed {
+    height: 0; 
+}
+
 
 .dropdown-button{
     width: 300px;
@@ -30,12 +39,12 @@
     padding: 0;
     margin: 0%;
     border: 1px solid gray;
-    height: 445px;
+    height: 437px;
     overflow-y: auto;
     scrollbar-width: none;
     border-radius: 5px;
     box-shadow: 10px 0px 8px rgb(0,0,0,0.2);
-    background-color: rgb(222, 110, 110);
+    background: linear-gradient(30deg, rgb(255, 255, 255),rgb(158, 156, 156))
 }
 
 .dropdown-component {
@@ -47,7 +56,7 @@
 .component-button{
     width: 100%;
     height: 100%;
-    background: linear-gradient(120deg,rgb(205, 209, 197),rgb(215, 241, 161));
+    background: linear-gradient(120deg,rgb(73, 179, 179),rgb(52, 226, 246));
     border-left: none;
     border-right: none;
     border-top: 1px solid gray;
