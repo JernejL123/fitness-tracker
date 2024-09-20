@@ -12,6 +12,10 @@
     justify-content: flex-start;
     position: relative; 
     z-index: 2; 
+    background: linear-gradient(30deg, rgb(205, 238, 228),rgb(156, 245, 171));
+    height: 479px;
+    width: 300px;
+    border-radius: 5px;
 }
 
 .image-container {
@@ -28,7 +32,7 @@
     width: 500px;
     height: 240px;
     display: flex;
-    margin-top: 200px;
+    margin-top: 10px;
     flex-direction: column; 
     background: linear-gradient(120deg, rgb(134, 235, 199), rgb(25, 225, 165));
     padding: 20px;
@@ -84,7 +88,6 @@
 }
 
 .middle-chart{
-    margin-left:-200px;
-    padding-top: 15px ;
+    padding-top: 60px
 }
 

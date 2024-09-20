@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import DropDownMenu from "../DropDownMenu/DropDownMenu";
 import './FitnessTracker.css';
-import img1 from './images/carabiner.svg';
+import img1 from './images/carabiner1.svg';
+import img2 from './images/mountain.svg';
 import DoughnutChart from "../DoughnutChart/DoughnutChart";
+import QuoteSector from "../QuoteSector/QuoteSector";
 
 function FitnessTracker() {
     const [sport, setSport] = useState("NONE⛔");
@@ -10,7 +12,7 @@ function FitnessTracker() {
     const [time, setTime] = useState("");
     const [calories, setCalories] = useState('0.00');
     const [goal, setGoal] = useState("");
-    const [hasCalculated, setHasCalculated] = useState(false);
+    const [quoteIndex,setQuoteIndex] = useState(Math.floor(Math.random() * 45));
 
     const option = [
         { label: 'Running🏃', METvalue: 9.8},
@@ -36,10 +38,6 @@ function FitnessTracker() {
     const calculateCalories = (event) => {
         event.preventDefault();
 
-        if (hasCalculated) {
-            return;
-        }
-
         const selectedSport = option.find(opt => opt.label === sport)
 
         const calorieRate = selectedSport.METvalue;
@@ -47,7 +45,6 @@ function FitnessTracker() {
         if (calorieRate) {
             const burnedCalories = calorieRate * weight * (time / 60);
             setCalories(burnedCalories.toFixed(2));
-            setHasCalculated(true);
         } else {
             setCalories("0.00");
         }
@@ -59,10 +56,11 @@ function FitnessTracker() {
         setWeight("");
         setCalories(0.00);
         setGoal("");
-        setHasCalculated(false);
+        setQuoteIndex(Math.floor(Math.random() * 45));
     }
 
     const remainingCalories = Math.max(goal - calories, 0);
+    const calculatePrecentage = (calories*100) / goal;
 
     return (
         <div className="main-app">
@@ -72,15 +70,22 @@ function FitnessTracker() {
 
                 <div className="image-container">
                     <img src={img1} alt="image not found :(" width="500" height="250" />
+                    <img src={img2} alt="image not found :(" width="500" height="241" />
                 </div>
             </div>
 
 
             <div className="middle-chart">
-                <DoughnutChart goal={goal} progress={calories} deficit={remainingCalories}/>
+                <DoughnutChart precentage={calculatePrecentage} progress={calories} deficit={remainingCalories}/>
             </div>
 
             <div className="right-content">
+
+                <QuoteSector randomIndex={quoteIndex}/>
+                <QuoteSector randomIndex={quoteIndex + 1}/>
+                <QuoteSector randomIndex={quoteIndex + 2}/>
+                <QuoteSector randomIndex={quoteIndex + 3} />
+
                 <form className="selection-bar" onSubmit={calculateCalories}>
                     <p>Selected sport: {sport}</p>
                     <br />

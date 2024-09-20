@@ -1,0 +1,19 @@
+.quote-section{
+    background:linear-gradient(120deg, rgb(118, 234, 217), rgb(50, 226, 200));
+    width: 520px;
+    margin-top: 10px;
+    min-height: 30px;
+    border-radius: 7px;
+    padding: 3px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 90%;
+    font-weight: 600;
+    color:rgb(71, 70, 70);
+    box-shadow: 4px 4px 8px rgb(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.quote-section:hover{
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 16px rgb(0,0,0,0.4);;
+}
